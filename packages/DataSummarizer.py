@@ -8,6 +8,8 @@ import logging
 import os
 
 except_hook = sys.excepthook
+logging.basicConfig(filename=os.path.join(os.getcwd(), 'log.txt'), filemode='a', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 def exception_hook(exc_type, value, traceback):

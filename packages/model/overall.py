@@ -22,7 +22,7 @@ class Overall(QObject):
         # add player_winnings + agent name
         df['player_winnings:overall'] =\
             df.loc[:, 'player_winnings:from_opponents':'player_winnings:from_jackpot'].sum(axis=1)
-        df['agent_name'] = df['player_id'].map(id_player_dict)
+        df['agent_name'] = df['agent_id'].map(id_player_dict)
         return df
 
     @staticmethod
@@ -40,6 +40,7 @@ class Overall(QObject):
     def get_id_player_dict(modified_df):
         id_player_series = modified_df[['player_id', 'nickname']].set_index('player_id')
         id_player_series.drop_duplicates(inplace=True)
+        id_player_series.to_clipboard()
         id_player_dict = id_player_series.to_dict('dict')['nickname']
         return id_player_dict
 
